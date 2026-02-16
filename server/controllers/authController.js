@@ -15,11 +15,10 @@ exports.register = async (req, res) => {
     const user = await User.create({
       name,
       email,
-      password: hashedPassword
+      password: hashedPassword,
     });
 
     res.status(201).json({ message: "User registered successfully" });
-
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -29,21 +28,24 @@ exports.login = async (req, res) => {
     const { email, password } = req.body;
 
     const user = await User.findOne({ email });
-    if (!user)
-      return res.status(400).json({ message: "Invalid credentials" });
+    if (!user) return res.status(400).json({ message: "Invalid credentials" });
 
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch)
       return res.status(400).json({ message: "Invalid credentials" });
 
-    const token = jwt.sign(
-      { id: user._id },
-      process.env.JWT_SECRET,
-      { expiresIn: "1d" }
-    );
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+      expiresIn: "1d",
+    });
 
-    res.json({ token });
-
+    res.json({
+      token,
+      user: {
+        name: user.name,
+        email: user.email,
+        id: user._id,
+      },
+    });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
