@@ -77,7 +77,7 @@ The goal of this project is to showcase clean architecture, scalability thinking
 - Fully responsive layout
 - Desktop sidebar navigation
 - Mobile-friendly layout
-- Dark Mode toggle 🌙
+- Dark Mode toggle 
 - Animated interactions (Framer Motion)
 - Toast notifications
 - Clean SaaS-style UI
@@ -117,14 +117,18 @@ npm run dev
 ## 🌐 API Endpoints
 
 ### 🔐 Authentication
+```
 POST   /api/auth/register
 POST   /api/auth/login
+```
 
 ### 📝 Tasks
+```
 GET    /api/tasks
 POST   /api/tasks
 PUT    /api/tasks/:id
 DELETE /api/tasks/:id
+```
 
 ---
 ## 👨‍💻 Author
