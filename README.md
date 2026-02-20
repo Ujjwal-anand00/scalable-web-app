@@ -95,7 +95,7 @@ JWT_SECRET=your_secret_key
 
 ### 1️⃣ Clone the Repository
 ```
-git clone <your-repo-url>
+git clone https://github.com/Ujjwal-anand00/scalable-web-app
 cd project-folder
 ```
 
